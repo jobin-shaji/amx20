@@ -1,0 +1,701 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root {
+  /* Color Palette */
+  --bg-home: hsl(130, 28%, 94%); /* Sage/mint pastel green */
+  --bg-refusal: hsl(0, 10%, 97%); /* Muted warm grey */
+  --bg-surprise: hsl(340, 48%, 91%);
+  --tree-pink: hsl(339, 78%, 81%);
+  --tree-pink-soft: hsla(339, 88%, 86%, 0.75);
+  --tree-shadow: hsla(339, 42%, 68%, 0.12);
+  --surprise-glow: radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.45), transparent 45%);
+  
+  --text-primary: hsl(150, 12%, 18%);
+  --text-secondary: hsl(150, 8%, 45%);
+  --text-red: hsl(355, 60%, 40%);
+  
+  --btn-primary-bg: hsl(150, 20%, 20%);
+  --btn-primary-text: hsl(130, 28%, 94%);
+  --btn-primary-hover: hsl(150, 20%, 12%);
+  
+  --btn-secondary-bg: transparent;
+  --btn-secondary-border: hsl(150, 12%, 18%);
+  --btn-secondary-text: hsl(150, 12%, 18%);
+  --btn-secondary-hover: hsla(150, 12%, 18%, 0.08);
+
+  --btn-danger-bg: hsl(355, 60%, 40%);
+  --btn-danger-text: hsl(0, 10%, 97%);
+  --btn-danger-hover: hsl(355, 60%, 30%);
+  
+  --transition-smooth: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-fast: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+  
+  --shadow-premium: 0 20px 40px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-home);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  transition: background-color 0.8s ease;
+}
+
+/* App View Container */
+.app-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Screens / Sections */
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: var(--transition-smooth);
+  transform: translateY(10px);
+}
+
+.screen.active {
+  opacity: 1;
+  pointer-events: all;
+  z-index: 10;
+  transform: translateY(0);
+}
+
+/* Typography & Layouts */
+.title {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(3rem, 7vw, 5.2rem);
+  font-weight: 400;
+  margin-bottom: 2rem;
+  text-align: center;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+}
+
+.subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  font-weight: 300;
+  color: var(--text-secondary);
+  margin-top: -1rem;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.button-group {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 320px;
+}
+
+/* Button Stylings */
+.btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  padding: 0.9rem 2.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: var(--transition-fast);
+  text-decoration: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.btn-primary:hover {
+  background-color: var(--btn-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background-color: var(--btn-secondary-bg);
+  border: 1px solid var(--btn-secondary-border);
+  color: var(--btn-secondary-text);
+}
+
+.btn-secondary:hover {
+  background-color: var(--btn-secondary-hover);
+  transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+.btn-danger {
+  background-color: var(--btn-danger-bg);
+  color: var(--btn-danger-text);
+}
+
+.btn-danger:hover {
+  background-color: var(--btn-danger-hover);
+  transform: translateY(-2px);
+}
+
+/* Screen Specific Styles */
+
+/* 1. Home View */
+#view-home {
+  background-color: var(--bg-home);
+}
+
+.home-hero-image {
+  display: block;
+  width: min(280px, 72vw);
+  height: auto;
+  margin: 0 auto 1.5rem;
+}
+
+/* 2. Refusal View */
+#view-refusal {
+  background-color: var(--bg-refusal);
+}
+
+.refusal-box {
+  background-color: #ffffff;
+  padding: 3.5rem 2.5rem;
+  border-radius: 24px;
+  box-shadow: var(--shadow-premium);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 420px;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  text-align: center;
+}
+
+.refusal-box h2 {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2.8rem, 6vw, 4.4rem);
+  color: var(--text-red);
+  margin-bottom: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.refusal-box p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+/* 3. Surprise View */
+#view-surprise {
+  background-color: var(--bg-surprise);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0;
+  overflow: hidden;
+}
+
+.restart-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  padding: 0.65rem 1.2rem;
+  border-radius: 999px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+}
+
+.restart-btn:hover {
+  color: var(--text-primary);
+  background-color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.birthday-layout {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: clamp(3.5rem, 6vw, 5rem);
+}
+
+.birthday-copy {
+  position: absolute;
+  left: clamp(2rem, 6vw, 5rem);
+  top: 50%;
+  z-index: 3;
+  max-width: 420px;
+  opacity: 0;
+  transform: translate(-40px, -50%);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.birthday-kicker {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: rgba(133, 65, 92, 0.7);
+  margin-bottom: 0.85rem;
+}
+
+.birthday-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 7vw, 5.4rem);
+  line-height: 0.95;
+  color: rgba(151, 64, 103, 0.92);
+  text-shadow: 0 14px 35px rgba(255, 255, 255, 0.38);
+}
+
+.birthday-note {
+  margin-top: 1.35rem;
+  max-width: 34ch;
+  font-size: clamp(0.98rem, 1.7vw, 1.08rem);
+  line-height: 1.7;
+  color: rgba(120, 64, 87, 0.82);
+  text-wrap: balance;
+}
+
+.surprise-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 560px;
+  z-index: 1;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(0);
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.surprise-scene::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 52% 58%, rgba(255, 255, 255, 0.42), transparent 38%),
+    linear-gradient(180deg, rgba(255, 244, 247, 0.98) 0%, rgba(252, 230, 239, 0.98) 48%, rgba(247, 215, 229, 1) 100%);
+  border-radius: 38px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+}
+
+.butterfly-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  overflow: hidden;
+  border-radius: 38px;
+}
+
+.butterfly {
+  position: absolute;
+  left: -14%;
+  top: var(--fly-top);
+  width: var(--butterfly-size);
+  height: calc(var(--butterfly-size) * 0.8);
+  opacity: 0;
+  transform: translate3d(0, 0, 0) scale(var(--fly-scale));
+  animation: butterflyFly var(--fly-duration) linear infinite;
+  animation-delay: var(--fly-delay);
+}
+
+.butterfly-body {
+  position: absolute;
+  inset: 0;
+  animation: butterflyFloat calc(var(--fly-duration) * 0.22) ease-in-out infinite;
+}
+
+.butterfly-wing {
+  position: absolute;
+  top: 14%;
+  width: 52%;
+  height: 68%;
+  border-radius: 65% 45% 55% 55%;
+  background:
+    radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.55), transparent 34%),
+    var(--butterfly-color);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.18);
+}
+
+.butterfly-wing.left {
+  left: 1%;
+  transform-origin: right center;
+  animation: wingLeftFlap 0.9s ease-in-out infinite;
+}
+
+.butterfly-wing.right {
+  right: 1%;
+  transform-origin: left center;
+  animation: wingRightFlap 0.9s ease-in-out infinite;
+}
+
+.butterfly-wing.top {
+  height: 56%;
+}
+
+.butterfly-wing.bottom {
+  top: 34%;
+  height: 46%;
+  border-radius: 58% 42% 62% 48%;
+  filter: brightness(0.96);
+}
+
+.butterfly-wing.left.bottom {
+  left: 7%;
+}
+
+.butterfly-wing.right.bottom {
+  right: 7%;
+}
+
+.butterfly-core {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  width: 12%;
+  height: 66%;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(164, 88, 115, 0.95), rgba(99, 45, 66, 0.88));
+}
+
+.butterfly-core::before,
+.butterfly-core::after {
+  content: '';
+  position: absolute;
+  top: -12%;
+  width: 2px;
+  height: 18%;
+  background: rgba(122, 64, 87, 0.72);
+  transform-origin: bottom center;
+}
+
+.butterfly-core::before {
+  left: 20%;
+  transform: rotate(-28deg);
+}
+
+.butterfly-core::after {
+  right: 20%;
+  transform: rotate(28deg);
+}
+
+#view-surprise.butterflies-active .butterfly {
+  opacity: 0.9;
+}
+
+.tree-stage {
+  position: relative;
+  width: min(100%, 430px);
+  aspect-ratio: 0.82;
+  z-index: 4;
+}
+
+.ground-line {
+  position: absolute;
+  left: 50%;
+  bottom: 5%;
+  width: 115%;
+  height: 2px;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.85);
+  opacity: 0;
+}
+
+.tree-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.tree-path {
+  fill: none;
+  stroke: rgba(242, 168, 195, 0.88);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+  stroke-dasharray: var(--path-length, 1);
+  stroke-dashoffset: var(--path-length, 1);
+  transition:
+    stroke-dashoffset var(--draw-duration, 1s) cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 0.3s ease;
+  filter: drop-shadow(0 0 12px rgba(255, 170, 200, 0.14));
+}
+
+.trunk-path {
+  stroke-width: 18;
+  --draw-duration: 1.5s;
+}
+
+.branch {
+  stroke-width: 9;
+  --draw-duration: 0.7s;
+}
+
+.branch-left-low {
+  transition-delay: 0s;
+}
+
+.branch-right-low {
+  transition-delay: 0.28s;
+}
+
+.branch-left-mid {
+  transition-delay: 0.56s;
+}
+
+.branch-right-mid {
+  transition-delay: 0.82s;
+}
+
+.heart-canopy {
+  position: absolute;
+  inset: 0 0 9%;
+}
+
+.heart-leaf {
+  position: absolute;
+  left: var(--heart-x);
+  top: var(--heart-y);
+  width: var(--heart-size);
+  height: var(--heart-size);
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(-45deg) scale(0.2);
+  transition:
+    opacity 0.35s ease var(--heart-delay, 0s),
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) var(--heart-delay, 0s);
+}
+
+.heart-leaf::before,
+.heart-leaf::after,
+.heart-leaf span {
+  content: '';
+  position: absolute;
+  background: var(--heart-color);
+}
+
+.heart-leaf span {
+  inset: 25% 0 0 25%;
+  width: 50%;
+  height: 50%;
+  transform: rotate(45deg);
+  filter: blur(0.2px);
+}
+
+.heart-leaf::before,
+.heart-leaf::after {
+  width: 62%;
+  height: 62%;
+  border-radius: 50%;
+}
+
+.heart-leaf::before {
+  left: 0;
+  top: 19%;
+}
+
+.heart-leaf::after {
+  left: 19%;
+  top: 0;
+}
+
+#view-surprise.sequence-started .ground-line {
+  animation: fadeGround 0.8s ease-out 0.1s forwards;
+}
+
+#view-surprise.trunk-grown .trunk-path {
+  opacity: 1;
+  stroke-dashoffset: 0;
+}
+
+#view-surprise.branches-grown .branch {
+  opacity: 1;
+  stroke-dashoffset: 0;
+}
+
+#view-surprise.canopy-active .heart-leaf {
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(-45deg) scale(1);
+}
+
+#view-surprise.final-layout .surprise-scene {
+  transform: translateX(14%);
+}
+
+#view-surprise.final-layout .birthday-copy {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+/* Small micro-interactions and transitions */
+.fade-in-up {
+  animation: fadeInUp 0.8s forwards cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeGround {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes butterflyFly {
+  0% {
+    transform: translate3d(0, 0, 0) scale(var(--fly-scale)) rotate(-6deg);
+  }
+  25% {
+    transform: translate3d(32vw, calc(var(--fly-drift) * -0.45), 0) scale(calc(var(--fly-scale) + 0.02)) rotate(4deg);
+  }
+  50% {
+    transform: translate3d(58vw, var(--fly-drift), 0) scale(var(--fly-scale)) rotate(-3deg);
+  }
+  75% {
+    transform: translate3d(82vw, calc(var(--fly-drift) * -0.28), 0) scale(calc(var(--fly-scale) - 0.02)) rotate(5deg);
+  }
+  100% {
+    transform: translate3d(116vw, calc(var(--fly-drift) * 0.4), 0) scale(var(--fly-scale)) rotate(-4deg);
+  }
+}
+
+@keyframes butterflyFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes wingLeftFlap {
+  0%, 100% {
+    transform: rotateY(0deg) rotate(-8deg);
+  }
+  50% {
+    transform: rotateY(62deg) rotate(-18deg);
+  }
+}
+
+@keyframes wingRightFlap {
+  0%, 100% {
+    transform: rotateY(0deg) rotate(8deg);
+  }
+  50% {
+    transform: rotateY(-62deg) rotate(18deg);
+  }
+}
+
+@media (max-width: 700px) {
+  .restart-btn {
+    top: 1rem;
+    right: 1rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .birthday-layout {
+    padding: 4.5rem 1.4rem 1.8rem;
+  }
+
+  .birthday-copy {
+    position: relative;
+    left: auto;
+    top: auto;
+    max-width: none;
+    margin: 0 auto 0.8rem;
+    text-align: center;
+    transform: translateY(22px);
+  }
+
+  #view-surprise.final-layout .birthday-copy {
+    transform: translateY(0);
+  }
+
+  .surprise-scene {
+    min-height: 420px;
+    align-self: stretch;
+  }
+
+  .butterfly {
+    left: -20%;
+  }
+
+  .tree-stage {
+    width: min(100%, 360px);
+    margin: 0 auto;
+  }
+
+  #view-surprise.final-layout .surprise-scene {
+    transform: translateX(4%);
+  }
+
+  .birthday-heading {
+    font-size: clamp(2.6rem, 13vw, 4.2rem);
+  }
+
+  .birthday-note {
+    max-width: none;
+    margin-top: 1rem;
+    font-size: 0.96rem;
+  }
+}

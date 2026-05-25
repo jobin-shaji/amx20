@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Special Surprise</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- 1. Home View -->
+    <section id="view-home" class="screen">
+      <div class="fade-in-up" style="text-align: center;">
+        <img src="assets/pic1.png" alt="Special memory" class="home-hero-image">
+        <h1 class="title">ready for suprice?</h1>
+        <div class="button-group">
+          <button id="btn-yes" class="btn btn-primary">yes</button>
+          <button id="btn-no" class="btn btn-secondary">no</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Refusal View -->
+    <section id="view-refusal" class="screen">
+      <div class="refusal-box fade-in-up">
+        <img src="assets/pic2.png" alt="Playful moment" class="home-hero-image">
+        <h2>how dare you</h2>
+        <button id="btn-try-again" class="btn btn-danger">try again</button>
+      </div>
+    </section>
+
+    <!-- 3. Surprise View -->
+    <section id="view-surprise" class="screen">
+      <button id="btn-restart" class="restart-btn" aria-label="Go back to start">restart</button>
+
+      <div class="birthday-layout">
+        <div class="birthday-copy">
+          <p class="birthday-kicker">for you</p>
+          <h2 class="birthday-heading">Happy Birthday</h2>
+          <p class="birthday-note">
+            dear Amritha , some people come for a moment and stay forever inside you and you are one of them wishing you a day full of smiles and a year full of blessings
+          </p>
+        </div>
+
+        <div class="surprise-scene" aria-hidden="true">
+          <div id="butterfly-layer" class="butterfly-layer"></div>
+          <div class="tree-stage">
+            <div class="ground-line"></div>
+            <svg class="tree-svg" viewBox="0 0 360 520" role="presentation">
+              <path class="tree-path trunk-path" d="M182 500 C176 456, 178 418, 184 380 C190 340, 192 300, 185 256 C177 208, 176 170, 181 130" />
+              <path class="tree-path branch branch-left branch-left-low" d="M186 334 C166 314, 144 296, 113 278 C94 267, 75 259, 56 252" />
+              <path class="tree-path branch branch-right branch-right-low" d="M188 314 C208 296, 228 277, 250 252 C266 235, 278 217, 290 196" />
+              <path class="tree-path branch branch-left branch-left-mid" d="M184 258 C166 240, 150 220, 131 193 C117 173, 106 151, 98 127" />
+              <path class="tree-path branch branch-right branch-right-mid" d="M185 228 C205 212, 220 194, 235 170 C246 150, 253 131, 260 108" />
+            </svg>
+            <div id="heart-canopy" class="heart-canopy"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
